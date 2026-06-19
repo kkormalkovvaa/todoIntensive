@@ -1,13 +1,14 @@
 import React from "react"
 import {Routes, Route} from "react-router"
+import Todo from "./pages/Todo"
+import Register from "./pages/Register"
+import Login from "./pages/Login"
 import PrivateRoute from "./components/PrivateRoute" 
-import Todo from "./components/Todo"
-import Register from "./components/Register"
-import './components.css'
-import Login from "./components/Login"
 import NotFound from "./components/NotFound"
+import './components.css'
 
 function App() {
+  // console.log(import.meta.env.VITE_URL)
   return (
     <div className="todos">
       <Routes>

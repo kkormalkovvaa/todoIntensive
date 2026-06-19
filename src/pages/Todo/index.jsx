@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import InputTask from "./InputTask"
-import TodoList from "./Todo-list"
-import SelectTodo from "./SelectTodo"
+import InputTask from "../../components/InputTask"
+import TodoList from "../../components/TodoList"
+import SelectTodo from "../../components/SelectTodo"
+import localStorageHelpers from "../../helpers/localStorageHelpers"
 const Todo = () => {
     const [tasks, setTasks] = useState([])
     const [filter, setFilter] = useState('all')
@@ -26,7 +27,7 @@ const Todo = () => {
 
     const fetchSelect = async(filterType = filter) => {
         try {
-            let url = "https://todo-redev.onrender.com/api/todos?page=1&limit=10"
+            let url = `${import.meta.env.VITE_URL}/todos?page=1&limit=10`
             if(filterType == 'completed') {
                 url += '&completed=true' // https://todo-redev.onrender.com/api/todos?completed=true&page=1&limit=10
             } else if (filterType == 'active') {
@@ -40,7 +41,7 @@ const Todo = () => {
                 {
                     method: 'GET',
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorageHelpers.get()}`
                     }
                 }
             )
@@ -57,11 +58,11 @@ const Todo = () => {
 
     const deleteTask = async (taskId) => {
         try {
-            const deleteResponse = await fetch(`https://todo-redev.onrender.com/api/todos/${taskId}`,
+            const deleteResponse = await fetch(`${import.meta.env.VITE_URL}/todos/${taskId}`,
                 {
                     method: 'DELETE',
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorageHelpers.get()}`
                     }
                 }
             )
@@ -75,11 +76,11 @@ const Todo = () => {
 
     const toggleTask = async (taskId, isCompleted) => {
         try {
-            const toggleResponse = await fetch(`https://todo-redev.onrender.com/api/todos/${taskId}/toggle`,
+            const toggleResponse = await fetch(`${import.meta.env.VITE_URL}/todos/${taskId}/toggle`,
                 {
                     method: 'PATCH',
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorageHelpers.get()}`
                     }
                 }
             )

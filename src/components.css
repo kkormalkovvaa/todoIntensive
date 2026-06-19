@@ -42,7 +42,9 @@ h1 {
 
 .register-btn,
 .addTask-btn,
-.login-btn {
+.login-btn,
+.to-register-btn,
+.to-login-btn {
     width: 100%;
     padding: 10px;
     border-radius: 4px;
@@ -111,4 +113,15 @@ h1 {
     font-size: 15px;
     background: #dbdbdb;
 
+}
+
+.to-register,
+.to-login {
+    margin-top: 15px;
+    font-size: 15px;
+}
+.to-register-btn,
+.to-login-btn{
+    width: 150px;
+    font-size: 13px;
 }

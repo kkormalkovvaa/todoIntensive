@@ -1,4 +1,6 @@
 import { useState } from "react"
+import localStorageHelpers from "../../helpers/localStorageHelpers"
+
 const InputTask = ({setTasks}) => {
     const [task, setTask] = useState({title: '', description: ''})
 
@@ -8,11 +10,11 @@ const InputTask = ({setTasks}) => {
 
     const createTask = async () => {
         try {
-            const response = await fetch('https://todo-redev.onrender.com/api/todos', 
+            const response = await fetch(`${import.meta.env.VITE_URL}/todos`, 
                 {
                     method: 'POST',
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        Authorization: `Bearer ${localStorageHelpers.get()}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(task)
