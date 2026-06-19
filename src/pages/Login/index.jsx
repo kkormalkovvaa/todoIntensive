@@ -15,25 +15,25 @@ const Login = () => {
         navigate('/register')
     }
 
-    // const loginFetch = async () => {
-    //     try {
-    //         const response = await fetch(`${import.meta.env.VITE_URL}/auth/login`,
-    //             {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     accept: 'application/json',
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(user)
-    //             }
-    //         )
-    //         const data = await response.json()
-    //         localStorageHelpers.set(data.access_token)
-    //         console.log(data.access_token)
-    //     }catch (error) {}
-    //     setUser({email: '', password: ''})
-    //     navigate('/todo')
-    // }
+    const loginFetch = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_URL}/auth/login`,
+                {
+                    method: 'POST',
+                    headers: {
+                        accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                }
+            )
+            const data = await response.json()
+            localStorageHelpers.set(data.access_token)
+            console.log(data.access_token)
+        }catch (error) {}
+        setUser({email: '', password: ''})
+        navigate('/todo')
+    }
 
     const handleLogin = async() => {
         
